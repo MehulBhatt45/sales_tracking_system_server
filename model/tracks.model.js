@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tracksSchema = new Schema({
-	title: { type: String },
-	trackId: { type: String },
-	tasks: { typr: Array, default: [] }
+	title: { type: String, unique: true },
+	trackId: { type: String, unique: true },
+	tasks: { type: Array, default: [] },
+	index: { type: Number }
 }, {timestamps: true});
 
 

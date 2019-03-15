@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sales = require('../controller/sales.controller');
 var communication = require('../controller/communication.controller');
+var tracks = require('../controller/track.controller');
 var comment = require('../controller/comment.controller');
 
 
@@ -22,11 +23,18 @@ router.delete('/client/multiple', sales.deleteClientByMultipleId);
 
 /* communication */
 router.post('/communication/add', communication.addCommunication);
-router.put('/communication/verify', communication.verifyCommunication);
+router.put('/communication/verify/:comId', communication.verifyCommunication);
 router.get('/communication/all', communication.getAll);
 router.get('/communication/all/verified', communication.getAllVerified);
 router.get('/communication/all/un-verified', communication.getAllUnVerified);
-router.delete('/communication/delete', communication.deleteCommunication);
+router.delete('/communication/delete/:comId', communication.deleteCommunication);
+
+/* Track */
+router.post('/tracks/add', tracks.addtracks);
+router.put('/tracks/update-index/:trackId', tracks.updatetracksIndex);
+router.put('/tracks/update/:trackId', tracks.updateTrack);
+router.get('/tracks/all', tracks.getAll);
+router.delete('/tracks/delete/:trackId', tracks.deletetracks);
 
 
 /* comments */
