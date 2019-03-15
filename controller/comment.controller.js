@@ -44,7 +44,7 @@ commentController.addComment = function(req,res){
 					res.status(500).send(err);
 				}
 				clientModel
-				.findOne({ _id : comment.taskId})
+				.findOne({ _id : comment.clientId})
 				.exec((error, task)=>{
 					task.comment.push(comment._id);
 					task.save();
@@ -57,7 +57,7 @@ commentController.addComment = function(req,res){
 
 commentController.getAllComment = function(req,res){
 	commentModel
-	.find({taskId: req.params.taskId})
+	.find({clientId: req.params.clientId})
 	.populate('userId')
 	.exec((err,comment)=>{
 		if (err){
