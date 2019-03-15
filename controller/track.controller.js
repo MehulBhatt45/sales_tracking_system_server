@@ -48,6 +48,7 @@ tracksController.updatetracksIndex = (req, res)=>{
 	.find({})
 	.sort({"index" : 1})
 	.exec((err, tracks)=>{
+		console.log(err, tracks)
 		if (err) res.status(500).send(err);
 		tracks = arrayMove(tracks, req.body.pIndex, req.body.cIndex);
 		console.log(tracks);
@@ -61,6 +62,7 @@ tracksController.updatetracksIndex = (req, res)=>{
 				callback();
 			})
 		});
+		res.status(200).send({msg:"updated"});
 	})
 }
 
