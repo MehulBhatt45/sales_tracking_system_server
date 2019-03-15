@@ -58,7 +58,7 @@ salesController.addClient = function(req, res){
 							}else{
 								console.log("files==========>",files)
 								for(var i=0;i<files.length;i++){
-									var logo = files[i].fd.split('/')[7]+"/"+files[i].fd.split('/')[8];
+									var logo = files[i].fd.split('/uploads/').reverse()[0];
 								}
 								savedClient['logo'] = logo;
 								clientModel.findOneAndUpdate({_id: savedClient._id}, {$set: { logo:logo }}, {upsert:true, new:true}).exec((error,client)=>{
