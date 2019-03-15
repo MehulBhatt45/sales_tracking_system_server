@@ -110,6 +110,7 @@ salesController.getAllClient = (req, res)=>{
 	clientModel
 	.find({})
 	.populate('communication_medium coordinator')
+	.populate({path: 'timelog', populate: 'operatedBy'})
 	.exec((err, clients)=>{
 		if (err) res.status(500).send(err);
 		else if(clients) res.status(200).send(clients);
